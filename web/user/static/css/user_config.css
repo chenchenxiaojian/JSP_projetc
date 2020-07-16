@@ -1,0 +1,509 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color: #000;
+    font-family: sans-serif;
+    min-height: 200vh;
+    color: white;
+    overflow-x: hidden;  /*不知道莫名其妙出现水平的滑动条，问题暂时不知*/
+}
+#background-img{
+    background-image: url("../img/bg.jpg");
+    width: 100%;
+    height: 200vh;
+    /*background-repeat: no-repeat;*/
+    position: absolute;
+    background-size: cover;
+    top:0;
+    left: 0;
+    z-index: -10;
+}
+
+.header{
+    width: 100%;
+    height: 20vh;
+    position: fixed;
+    transition: 1s;
+    border-bottom: 1px solid #817f7f;
+    z-index: 99;
+    /*background-color: #ff0000;*/
+}
+/*
+ * 存在问题，如果设置img的position为relative,
+ * 按道理google显示应该正常，可是视觉效果
+ * 却好像是top为负数一样，定位飘了
+ */
+.header img{
+    width: 30%; /*设置一个width，height会自动缩放*/
+    position: absolute;
+    left: 7%;
+    top: 50%;
+    transform: translateY(-50%); /*设置垂直居中*/
+    -webkit-transform: translateY(-50%); /*google兼容*/
+}
+.header ul{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    /*z-index: 100;*/
+}
+.header ul li{
+    list-style: none;
+    position: relative;
+    top: 10vh;
+    left: 150px;
+    /*width: 100px;*/
+    transform: translateY(-50%);
+    padding: 13px 35px 16px 35px;
+    transition: 1s;
+
+}
+.header ul li a{
+    position: relative;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+}
+.header ul li ul{
+    top: 12px;
+    left: -149px;
+    position: absolute;
+    display: none;
+}
+.header ul li ul li{
+    width: 127px;
+    padding: 15px 34px 15px 34px;
+}
+a{
+    display: block;
+}
+.header ul li:hover{
+    /*border: 1px solid rgba(246, 172, 172, 0.75);*/
+    border-radius: 3px;
+    box-shadow: 0px 0px 2px 2px rgba(167, 229, 196, 0.7);
+    background-color: white;
+}
+.header ul li:hover>a{      /*设置鼠标聚焦是链接的字体颜色*/
+    color: red;
+}
+.header ul li:hover ul{
+    display: block;
+}
+/*滑动滚动条后header部分的样式*/
+.stick{
+    background-color: white;
+}
+/*滚动条向下滑动字体变黑*/
+.stick ul li a,.stick .login-register span,
+.stick .login-register a{
+    color: black;
+}
+
+
+.login-register{
+    position: absolute;
+    top: 6px;
+    right: 2px;
+    width: 30%;
+    height: 30px;
+    /*background-color: red;*/
+}
+.login-register img{
+    width: 20px;
+}
+.login-register span{
+    position: relative;
+    left: 70px;
+    font-weight: bold;
+}
+.login-register span:nth-child(2){ /*请登录标语*/
+    /*属于.login-register标签的第二个子元素，span的父元素就是.login-register*/
+    display: none;
+}
+.login-register span:nth-child(3){ /*欢迎标语*/
+    display: none;
+}
+.login-register .login-register-link{ /*登录注册链接*/
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline;
+}
+.login-register .login-register-link:hover{
+    color: rgba(239, 83, 83, 0.84);
+    /*background-color: black;*/
+    font-weight: 900;
+    border-radius: 3px;
+    box-shadow: 0px 0px 2px 2px rgba(167, 229, 196, 0.7);
+}
+.login-register .user-config{       /*用户中心*/
+    position: absolute;
+    top: 66px;
+    right: 175px;
+    display: none;
+}
+.login-register .user-config img{
+    position: relative;
+    width: 50px;
+    /*transition: 5s ease;*/
+}
+.login-register .user-config img:hover{
+    width: 60px;
+    background: linear-gradient(45deg, #50a57e, #018651);
+    border-radius: 50%;
+}
+
+
+#content{
+    position: absolute;
+    top: 20vh;
+    width: 100%;
+    height: 140vh;
+}
+#content .content-title{
+    font-size: 1.7rem;
+    color: white;
+    position: relative;
+    left: 10%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-weight: bolder;
+}
+#content .content-title button{
+    width: 70px;
+    height: 40px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+    background-color: white;
+    margin-left: 10px;
+}
+#content .content-title button:hover{
+    background-color: red;
+    color: white;
+}
+#content .content-title button:active{
+    background-color: rgba(226, 100, 100, 0.67);
+}
+#content .content-nav{
+    position: absolute;
+    left: 10%;
+    width: 200px;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 20px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 2px 2px #d2cccc;
+}
+#content .content-nav span{
+    position: relative;
+    padding: 7%;
+    text-align: center;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: bold;
+}
+#content .content-nav span:hover{
+    color: red;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+/*用户信息*/
+#content #userconfig-box,
+#content #shoppingcar-box,
+#content #orderconfig-box,
+#content #configother-box,
+#content #acceptaddress-box,
+#content #otherconfig-box{
+    position: absolute;
+    border-radius: 30px;
+    border: 1px solid black;
+    width: 60%;
+    height: 100vh;
+    right: 15%;
+}
+#userconfig-box span{
+    font-weight: bold;
+    display: block;
+    font-size: 1.3rem;
+    text-align: center;
+    margin-top: 10px;
+    color: aquamarine;
+}
+#userconfig-box .user-messagebox{
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    position: relative;
+    margin: 0 auto;
+    top: 4%;
+    width: 80%;
+    text-align: left;
+}
+#userconfig-box .user-messagebox div{
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+#userconfig-box .user-messagebox div span{
+    color: white;
+    font-size: 1rem;
+    display: inline;
+    font-weight: bolder;
+}
+#userconfig-box .user-messagebox div input{
+    letter-spacing: 2px;  /*字体间隔*/
+    left: 100px;
+    width: 50%;
+    height: 2.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid black;
+    color: white;
+    margin-left: 30px;
+    font-weight: normal;
+    outline: none;
+    box-shadow: none;  /*firefox input输入字符超过指定长度，会出现空色边框*/
+}
+#userconfig-box .user-messagebox  button{
+    width: 180px;
+    height: 40px;
+    border-radius: 10px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(to right, red, blue);
+    border: none;
+    color: white;
+    cursor: pointer;
+    box-shadow: 1px 1px 2px 2px black;
+    transition: .8s;
+    animation: donghua 1s infinite alternate;
+}
+@keyframes donghua {
+    from {height: 30px; width: 150px;font-size: 1rem}
+    to {height: 60px; width: 180px; font-size: 1.5rem}
+}
+#userconfig-box .user-messagebox button:hover{
+    background: linear-gradient(to left,red,blue);
+    animation-play-state:paused;
+}
+#userconfig-box .user-messagebox button:active{
+    color: red;
+    transition: .3s;
+    background: transparent;
+}
+
+/*购物车界面*/
+#content #shoppingcar-box{
+    width: 70%;
+    left: 25%;
+    height:140vh;
+}
+#shoppingcar-box span{
+    font-weight: bold;
+    display: block;
+    font-size: 1.3rem;
+    text-align: center;
+    margin-top: 10px;
+    color: aquamarine;
+}
+#shoppingcar-box .shopping-car-title,
+#shoppingcar-box .shopping-car-items{
+    display: flex;
+    /*position: absolute;*/
+    width: 90%;
+    margin: 10px auto;
+    align-items: center;
+}
+#shoppingcar-box .shopping-car-title span,
+#shoppingcar-box .shopping-car-items span {
+    color: white;
+    width: 19%;
+    display: inline;
+    font-size: 1.2rem;
+}
+#shoppingcar-box .shopping-car-items input{
+    position: absolute;
+    left: 5%;
+}
+#shoppingcar-box .shopping-car-items button{
+    position: absolute;
+    right: 5%;
+}
+#shoppingcar-box .shopping-car-items span{
+    font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+}
+#shoppingcar-box .shopping-car-items button{
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid white;
+    font-size: 0.8rem;
+    color: red;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#shoppingcar-box .shopping-car-items button:active{
+    color: white;
+}
+#shoppingcar-box .shopping-car-items span img{
+    width: 100px;
+}
+
+.sub,.add{
+    position: absolute;
+    font-size: 1.5rem;
+    cursor: pointer;
+    user-select: none; /*设置文本不能被选择*/
+    -moz-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+.sub:active, .add:active{
+    color: #ff0404;
+}
+.sub{
+    left: 43%;
+}
+.add{
+    right: 47%;
+}
+
+.settle-account{
+    position: relative;
+    top: 10%;
+}
+.settle-account div{
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.settle-account div input{
+    margin: 20px;
+    height: 1.7rem;
+    /*width: 40%;*/
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+    border-bottom: 1px solid black;
+    color: white;
+    text-align: center;
+}
+.accept-address{ /*收货地址*/
+    width: 70%;
+}
+.settle-account .buy{
+    position: relative;
+}
+.settle-account .buy strong{
+    font-size: 3rem;
+    color: red;
+}
+.settle-account .buy button{
+    outline: none;
+    border: none;
+    background-color: red;
+    width: 100px;
+    height: 50px;
+    border-radius: 20px;
+    margin-left: 100px;
+    /*margin-bottom: 10px;*/
+    color: white;
+    position: relative;
+    top: 50%;
+    transform: translateY(-20%);
+    cursor: pointer;
+}
+.settle-account .buy button:active{
+    background-color: white;
+    color: red;
+}
+
+#orderconfig-box .orderconfig-box-title{
+    text-align: center;
+    font-size: 1.3rem;
+    color: aquamarine;
+    position: relative;
+    top:10px;
+    left: 30%;
+}
+#orderconfig-box .orderitem-box {
+    position: relative;
+    top: 6%;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid black;
+}
+#orderconfig-box .orderitem-box button{
+    outline: none;
+    border: none;
+    background: transparent;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+    margin-left: 100px;
+}
+#orderconfig-box .orderitem-box button:active{
+    background-color: white;
+    color: red;
+}
+#orderconfig-box .orderitem-box .order-message{
+    margin-top: 30px;
+}
+.order-message{
+    display: none;
+}
+
+
+#userconfig-box{
+    display:none;
+}
+#shoppingcar-box{
+    display: block;
+}
+#orderconfig-box{
+    display: none;
+}
+#acceptaddress-box{
+    display: none;
+}
+#otherconfig-box{
+    display: none;
+}
+
+#footer{
+    color: #817f7f;
+    position: absolute;
+    bottom: 1vh;
+    top: 190vh;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}

@@ -1,0 +1,129 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.box{
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)),url(../img/login_page_bg.jpg);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    overflow: hidden; /*溢出隐藏，此处是为了隐藏滚动条*/
+}
+.form-box{
+    height: 380px;
+    width: 350px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    background-color: rgba(255, 251, 251, 0.1);
+}
+.button-box{
+    width: 240px;
+    margin: 30px auto;
+    border-radius: 30px;
+    position: relative;
+    box-shadow: 0 0 20px 10px rgba(133, 151, 245, 0.83);
+}
+.button-box button{
+    height: 40px;
+    border: 0;
+    outline: none;
+    width: 48%;
+    position: relative;
+    background: transparent; /*设置背景透明*/
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+#btn{       /*设置按钮选中颜色 login/register*/
+    top:0;
+    left: 0;
+    width: 120px;
+    height: 100%;
+    position: absolute; /*重点*/
+    background: linear-gradient(to right, rgb(229, 7, 7), rgb(42, 11, 250));
+    border-radius: 30px;
+    transition: .6s;
+}
+.login-form .register-form{
+    /*position: relative;*/
+}
+.input, .input-btn{
+    width: 70%;
+    height: 30px;
+    /*height: 30px; !*重新设置input高度，为了加上age,city*!*/
+    margin: 2rem auto;
+    /*margin: 1.5rem auto;*/
+    border: none;
+    position: relative;
+    text-align: center;
+}
+.input-btn{ /*按钮的宽度*/
+    height: 35px;
+}
+/*按钮样式*/
+.input-btn input{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: 0;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(to right, rgba(229, 7, 7, 0.84), rgba(42, 11, 250, 0.84));
+    cursor: pointer;
+}
+.input-btn input:active{
+    background: linear-gradient(to right, rgba(229, 7, 7, 0.46), rgba(42, 11, 250, 0.51));
+}
+/*输入框样式*/
+.input input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    color: white;
+    border: none;
+    border-bottom: 1.5px solid #ffffff;
+    outline: none;
+    box-shadow: none; /*去除firefox的input莫名其妙的边框*/
+}
+.input::after{
+    content: attr(placeholder);
+    position: absolute;
+    float: left;
+    color: white;
+    font-weight: bold;
+    left: 0;
+    top: 0.3rem;
+    font-size: 0.8rem;
+    pointer-events: none; /*穿透伪元素，直接让Input获取鼠标聚焦*/
+    transition: .6s
+}
+.focus::after{      /*input输入框获得焦点的样式，.focus给div加上类，input是没有伪元素的*/
+    color: #fdfdfd;
+    top: -1.3rem;
+    font-size: 1rem;
+}
+
+.login-form{
+    /*display: none;*/
+    /* 380px   */
+    
+}
+.register-form{
+    display: none;
+    /* 720px   */
+}
+
+/*设置提示信息的样式*/
+#tishi{
+    float: right;
+}
+
+/*对于不同的浏览器，样式会出现不同，经过测试的浏览器firefox chrome me*/
